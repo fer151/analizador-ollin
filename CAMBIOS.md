@@ -33,3 +33,5 @@ Puedes incluir varias solicitudes. Si una depende de otra, indícalo expresament
   - Ubicación: `ventana.py`, constantes `COLOR_FONDO` y `COLOR_TEXTO_FONDO` y método `Ventana._construir()`.
   - Cambio y motivo: se cambió el fondo principal a azul `#272AF5` y se puso en blanco el texto que queda sobre ese fondo para mantener el contraste. El editor y el panel de resultados conservan sus fondos.
   - Verificación: se compilaron ambos módulos Python y se comprobaron en Tkinter los colores de fondo y texto y los fondos de ambos cuadros.
+
+
