@@ -17,6 +17,7 @@ Puedes incluir varias solicitudes. Si una depende de otra, indícalo expresament
 ## Solicitudes pendientes
 
 <!-- Escribe aquí tus solicitudes usando casillas sin marcar: - [ ] -->
+- [ ] El nombre del programa que tiene como titulo solo dejalo como OLLIN
 
 ## Historial de cambios
 
