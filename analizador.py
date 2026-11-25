@@ -7,7 +7,7 @@ identificador, número, operador, símbolo o cadena) y marca los errores.
 import pyodbc
 
 # ---- Conexión: ajusta solo estas tres líneas si cambian tu servidor o tu base ----
-SERVIDOR = r"localhost\SQLEXPRESS"      # o el nombre que usas en SSMS
+SERVIDOR = r"DESKTOP-P4N2L0S"      # o el nombre que usas en SSMS
 BASE = "OLLIN"
 DRIVER = "ODBC Driver 17 for SQL Server"  # si falla, prueba "ODBC Driver 18 for SQL Server"
 
