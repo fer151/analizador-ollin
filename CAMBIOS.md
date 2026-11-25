@@ -17,7 +17,6 @@ Puedes incluir varias solicitudes. Si una depende de otra, indícalo expresament
 ## Solicitudes pendientes
 
 <!-- Escribe aquí tus solicitudes usando casillas sin marcar: - [ ] -->
-- [ ] Cambia el color de fondo de la interface al siguinete color #272AF5
 
 ## Historial de cambios
 
@@ -27,3 +26,9 @@ Puedes incluir varias solicitudes. Si una depende de otra, indícalo expresament
   - Ubicación: `ventana.py`, constante `COLOR_FONDO` y método `Ventana._construir()`.
   - Cambio y motivo: se aplicó el rojo a la ventana principal y sus secciones para que el color cubra el fondo visible. Se conservó el fondo de los cuadros de texto para facilitar la lectura.
   - Verificación: se comprobó la compilación de ambos módulos Python y se creó una ventana de Tkinter para verificar el color de los contenedores y que el editor y el resultado conservaran su fondo.
+
+- [x] Cambia el color de fondo de la interface al siguinete color #272AF5
+  - Origen: solicitud en `main`, commit `df94181`.
+  - Ubicación: `ventana.py`, constantes `COLOR_FONDO` y `COLOR_TEXTO_FONDO` y método `Ventana._construir()`.
+  - Cambio y motivo: se cambió el fondo principal a azul `#272AF5` y se puso en blanco el texto que queda sobre ese fondo para mantener el contraste. El editor y el panel de resultados conservan sus fondos.
+  - Verificación: se compilaron ambos módulos Python y se comprobaron en Tkinter los colores de fondo y texto y los fondos de ambos cuadros.
