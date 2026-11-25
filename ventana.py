@@ -15,6 +15,7 @@ from tkinter import filedialog, messagebox, scrolledtext
 import analizador as az
 
 RETRASO_ANALISIS_MS = 600   # tiempo sin escribir antes de analizar en vivo
+COLOR_FONDO = "#F54927"
 
 
 class Ventana:
@@ -29,15 +30,17 @@ class Ventana:
         r = self.raiz
         r.title(f"{az.NOMBRE} v{az.VERSION}")
         r.geometry("1200x700")
+        r.configure(bg=COLOR_FONDO)
 
         # Identidad
-        cab = tk.Frame(r)
+        cab = tk.Frame(r, bg=COLOR_FONDO)
         cab.pack(fill="x", padx=8, pady=(6, 0))
-        tk.Label(cab, text=f"{az.NOMBRE}  v{az.VERSION}", font=("Arial", 12, "bold")).pack(side="left")
-        tk.Label(cab, text=f"Autores: {az.AUTORES}", fg="#555").pack(side="left", padx=12)
+        tk.Label(cab, text=f"{az.NOMBRE}  v{az.VERSION}", bg=COLOR_FONDO,
+                 font=("Arial", 12, "bold")).pack(side="left")
+        tk.Label(cab, text=f"Autores: {az.AUTORES}", bg=COLOR_FONDO).pack(side="left", padx=12)
 
         # Botones
-        barra = tk.Frame(r)
+        barra = tk.Frame(r, bg=COLOR_FONDO)
         barra.pack(fill="x", padx=8, pady=6)
         botones = [("Cargar programa", self.cargar), ("Guardar programa", self.guardar_programa),
                    ("Analizar", self.analizar), ("Guardar resultado", self.guardar_resultado),
@@ -46,13 +49,13 @@ class Ventana:
             tk.Button(barra, text=texto, command=cmd, padx=10, pady=4).pack(side="left", padx=4)
 
         # Zona central: programa con números de línea y resultado
-        centro = tk.Frame(r)
+        centro = tk.Frame(r, bg=COLOR_FONDO)
         centro.pack(fill="both", expand=True, padx=8)
 
-        marco_prog = tk.Frame(centro)
+        marco_prog = tk.Frame(centro, bg=COLOR_FONDO)
         marco_prog.pack(side="left", fill="both", expand=True)
-        tk.Label(marco_prog, text="Programa fuente").pack(anchor="w")
-        cuerpo = tk.Frame(marco_prog)
+        tk.Label(marco_prog, text="Programa fuente", bg=COLOR_FONDO).pack(anchor="w")
+        cuerpo = tk.Frame(marco_prog, bg=COLOR_FONDO)
         cuerpo.pack(fill="both", expand=True)
         self.numeros = tk.Text(cuerpo, width=4, padx=4, takefocus=0, border=0,
                                background="#eee", foreground="#666",
@@ -67,26 +70,29 @@ class Ventana:
         self.programa.bind("<KeyRelease>", lambda e: self._programar_analisis())
         self.programa.bind("<<Modified>>", lambda e: self._actualizar_numeros())
 
-        marco_res = tk.Frame(centro)
+        marco_res = tk.Frame(centro, bg=COLOR_FONDO)
         marco_res.pack(side="right", fill="both", expand=True, padx=(8, 0))
-        tk.Label(marco_res, text="Resultado").pack(anchor="w")
+        tk.Label(marco_res, text="Resultado", bg=COLOR_FONDO).pack(anchor="w")
         self.salida = scrolledtext.ScrolledText(marco_res, width=75, font=("Consolas", 10))
         self.salida.pack(fill="both", expand=True)
 
         # Zona inferior: búsqueda en la tabla de símbolos
-        busq = tk.LabelFrame(r, text="Búsqueda en la tabla de símbolos")
+        busq = tk.LabelFrame(r, text="Búsqueda en la tabla de símbolos", bg=COLOR_FONDO)
         busq.pack(fill="x", padx=8, pady=6)
         self.entrada_busqueda = tk.Entry(busq, width=30, font=("Consolas", 11))
         self.entrada_busqueda.pack(side="left", padx=6, pady=6)
         self.modo = tk.StringVar(value="exacta")
-        tk.Radiobutton(busq, text="Exacta", variable=self.modo, value="exacta").pack(side="left")
-        tk.Radiobutton(busq, text="Por prefijo", variable=self.modo, value="prefijo").pack(side="left")
+        tk.Radiobutton(busq, text="Exacta", variable=self.modo, value="exacta",
+                       bg=COLOR_FONDO, activebackground=COLOR_FONDO).pack(side="left")
+        tk.Radiobutton(busq, text="Por prefijo", variable=self.modo, value="prefijo",
+                       bg=COLOR_FONDO, activebackground=COLOR_FONDO).pack(side="left")
         tk.Button(busq, text="Buscar", command=self.buscar_simbolo, padx=10).pack(side="left", padx=6)
-        self.resultado_busqueda = tk.Label(busq, text="", anchor="w", fg="#1f4e78")
+        self.resultado_busqueda = tk.Label(busq, text="", anchor="w", bg=COLOR_FONDO)
         self.resultado_busqueda.pack(side="left", padx=8, fill="x", expand=True)
 
         # Barra de estado
-        self.estado = tk.Label(r, text="Listo. Escriba un programa o cargue un archivo.", anchor="w", relief="sunken")
+        self.estado = tk.Label(r, text="Listo. Escriba un programa o cargue un archivo.",
+                               bg=COLOR_FONDO, anchor="w", relief="sunken")
         self.estado.pack(fill="x", padx=8, pady=(0, 6))
 
         self.entrada_busqueda.bind("<Return>", lambda e: self.buscar_simbolo())
