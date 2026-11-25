@@ -19,14 +19,15 @@ class Ventana:
     # ------------------------------------------------------------ construcción
     def _construir(self):
         r = self.raiz
-        r.title(f"{az.NOMBRE} v{az.VERSION}")
+        titulo = "OLLIN"
+        r.title(titulo)
         r.geometry("1200x700")
         r.configure(bg=COLOR_FONDO)
 
         # Identidad
         cab = tk.Frame(r, bg=COLOR_FONDO)
         cab.pack(fill="x", padx=8, pady=(6, 0))
-        tk.Label(cab, text=f"{az.NOMBRE}  v{az.VERSION}", bg=COLOR_FONDO,
+        tk.Label(cab, text=titulo, bg=COLOR_FONDO,
                  fg=COLOR_TEXTO_FONDO,
                  font=("Arial", 12, "bold")).pack(side="left")
         tk.Label(cab, text=f"Autores: {az.AUTORES}", bg=COLOR_FONDO,

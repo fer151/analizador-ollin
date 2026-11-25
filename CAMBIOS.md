@@ -17,7 +17,6 @@ Puedes incluir varias solicitudes. Si una depende de otra, indícalo expresament
 ## Solicitudes pendientes
 
 <!-- Escribe aquí tus solicitudes usando casillas sin marcar: - [ ] -->
-- [ ] El nombre del programa que tiene como titulo solo dejalo como OLLIN
 
 ## Historial de cambios
 
@@ -33,3 +32,9 @@ Puedes incluir varias solicitudes. Si una depende de otra, indícalo expresament
   - Ubicación: `ventana.py`, constantes `COLOR_FONDO` y `COLOR_TEXTO_FONDO` y método `Ventana._construir()`.
   - Cambio y motivo: se cambió el fondo principal a azul `#272AF5` y se puso en blanco el texto que queda sobre ese fondo para mantener el contraste. El editor y el panel de resultados conservan sus fondos.
   - Verificación: se compilaron ambos módulos Python y se comprobaron en Tkinter los colores de fondo y texto y los fondos de ambos cuadros.
+
+- [x] El nombre del programa que tiene como titulo solo dejalo como OLLIN
+  - Origen: solicitud en `main`, commit `fd24f77`.
+  - Ubicación: `ventana.py`, método `Ventana._construir()`.
+  - Cambio y motivo: la barra de título y el encabezado muestran únicamente `OLLIN` para usar el nombre corto pedido.
+  - Verificación: se compilaron ambos módulos Python y se comprobó en Tkinter el texto exacto de la barra de título y del encabezado.
