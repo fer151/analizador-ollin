@@ -1,14 +1,4 @@
-"""Ventana del analizador léxico OLLIN, versión 2.0.
-
-Esta parte solo dibuja la pantalla y responde a los botones.
-Todo el análisis lo hace analizador.py.
-
-Zonas de la ventana:
-  - Barra superior: identidad (nombre, versión, autores) y botones.
-  - Izquierda: programa fuente con número de línea.
-  - Derecha: resultado (tokens, errores, tabulación, tabla de símbolos, UML).
-  - Abajo: búsqueda en la tabla de símbolos.
-"""
+"""Ventana del analizador léxico OLLIN, versión 2.0."""
 import tkinter as tk
 from tkinter import filedialog, messagebox, scrolledtext
 

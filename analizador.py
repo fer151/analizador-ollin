@@ -1,11 +1,4 @@
-"""Analizador léxico OLLIN, versión 2.0.
-
-Flujo general (ver el Manual del código):
-    1. inicializar()  -> conecta a SQL Server y carga la matriz de transición.
-    2. analizar(texto)-> recorre el programa línea por línea y separa tokens.
-    3. reporte(texto) -> arma el texto del resultado: tokens, errores, tabulación,
-                         tabla de símbolos y diagrama UML.
-
+"""Analizador léxico OLLIN.
 Este módulo NO tiene interfaz gráfica; la ventana (ventana.py) lo llama.
 """
 import re
@@ -13,19 +6,19 @@ from collections import namedtuple
 
 import pyodbc
 
-# ---------------------------------------------------------------- Identidad
+#  Identidad
 NOMBRE = "Analizador léxico OLLIN"
 VERSION = "2.0"
 AUTORES = ("Vallejo Espinoza Daniela Guadalupe; Campos Villanueva Fernando G.; "
            "Villa Vargas Karla Astrid")
 
-# ---------------------------------------------------------------- Conexión
+#  Conexión
 # Cambia solo estas tres líneas si cambian tu servidor, base o driver.
 SERVIDOR = r"localhost\SQLEXPRESS"
 BASE = "OLLIN"
 DRIVER = "ODBC Driver 17 for SQL Server"
 
-# ---------------------------------------------------------------- Constantes
+#  Constantes
 INICIAL = "q0"          # estado de inicio de cada token
 ERROR = "qERR"          # estado trampa: no hay transición válida
 SANGRIA_MULTIPLO = 5    # la sangría debe ser múltiplo de 5 espacios
@@ -41,7 +34,7 @@ NUM_ESTADOS = 0
 NUM_SIMBOLOS = 0
 
 
-# ================================================================ 1. CONEXIÓN
+#  1. CONEXIÓN
 def conectar(servidor=SERVIDOR, base=BASE, driver=DRIVER):
     """Abre la conexión a SQL Server con la cuenta de Windows (sin contraseña)."""
     return pyodbc.connect(
@@ -90,7 +83,7 @@ def inicializar(con=None):
     return NUM_ESTADOS
 
 
-# ================================================================ 2. RECORRIDO
+#  2. RECORRIDO
 def columna(c):
     """Nombre de la columna de la matriz para un carácter.
 
@@ -122,7 +115,7 @@ def mayor_lexema(linea, i):
     return mejor
 
 
-# ================================================================ 3. ERRORES
+#  3. ERRORES
 def sugerir(fragmento):
     """Regresa una sugerencia breve para el fragmento que no es válido."""
     if fragmento.isalpha() and fragmento.islower():
@@ -177,7 +170,7 @@ def analizar(texto):
     }
 
 
-# ================================================================ 4. TABLA DE SÍMBOLOS
+#  4. TABLA DE SÍMBOLOS
 def construir_tabla(tokens, errores=()):
     """Tabla de símbolos: un registro por identificador distinto.
 
@@ -229,7 +222,7 @@ def buscar(tabla, texto, modo="exacta"):
     return [s for s in tabla if s["nombre"] == texto]
 
 
-# ================================================================ 5. TABULACIÓN
+#  5. TABULACIÓN
 def revisar_sangrias(texto):
     """Revisa la sangría (espacios al inicio de cada línea).
 
@@ -250,7 +243,7 @@ def revisar_sangrias(texto):
     return avisos
 
 
-# ================================================================ 6. DIAGRAMA UML
+#  6. DIAGRAMA UML
 UML_MERMAID = """classDiagram
     class Ventana {
         +abrir()
@@ -316,7 +309,7 @@ def diagrama_uml():
     return UML_MERMAID + "\n" + UML_SECUENCIA
 
 
-# ================================================================ 7. REPORTE
+#  7. REPORTE
 def _linea_con_marca(texto_linea, columna, fragmento):
     """Muestra la línea y una marca ^ bajo todo el fragmento con error."""
     return f"      | {texto_linea}\n      | {' ' * (columna - 1)}{'^' * len(fragmento)}"
